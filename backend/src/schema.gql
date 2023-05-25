@@ -1,0 +1,38 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type City {
+  SeherId: Int!
+  SeherAdi: String!
+  Ehali: Int!
+  Erazi: String!
+  OrtaAyliqTemperatur: String!
+  YagintininMiqdari: String!
+  PoctIndeksi: String!
+  RayonSayi: Int!
+}
+
+type Village {
+  RayonId: Int!
+  RayonAdi: String!
+  Ehali: Int!
+  Erazi: String!
+  BelediyyelerinSayi: Int!
+  RayonIcraHakimiyyetininTelefonu: String!
+  PoctIndeksi: String!
+  KendlerinSayi: Int!
+}
+
+type Indexs {
+  CommonId: String!
+  SeherKod: Int!
+  RayonKod: Int!
+  Seher: City
+  Rayon: [Village!]
+}
+
+type Query {
+  Indexs: [Indexs!]!
+  city(cityName: String!): [Indexs!]!
+}

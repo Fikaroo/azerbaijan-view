@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Kodlar {
+  CommonId String  @id @default(uuid())
+  SeherKod Int?    @unique
+  RayonKod Int?    @unique
+  Seher    Seher?
+  Rayon    Rayon[]
+}
+
+model Seher {
+  SeherKod            Kodlar @relation(fields: [SeherId], references: [SeherKod])
+  SeherId             Int    @id
+  SeherAdi            String
+  Ehali               Int
+  Erazi               String @default("km²")
+  OrtaAyliqTemperatur String @default("°C")
+  YagintininMiqdari   String @default("mm")
+  PoctIndeksi         String
+  RayonSayi           Int
+}
+
+model Rayon {
+  RayonKod                        Kodlar @relation(fields: [RayonId], references: [RayonKod])
+  RayonId                         Int    @id
+  RayonAdi                        String
+  Ehali                           Int
+  Erazi                           String @default("km²")
+  BelediyyelerinSayi              Int
+  RayonIcraHakimiyyetininTelefonu String
+  PoctIndeksi                     String
+  KendlerinSayi                   Int
+}
