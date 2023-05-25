@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         poppins: "Poppins",
       },
+      backgroundImage: {
+        wallpaper: "url('../src/assets/wallpaper.png')",
+      },
       container: {
         center: true,
       },
