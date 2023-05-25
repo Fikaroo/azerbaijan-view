@@ -3,7 +3,7 @@ import Map from "../components/Map";
 const Home = () => {
   return (
     <div>
-      <h1 className="flex gap-4 justify-center items-center font-bold text-3xl pt-4">
+      <h1 className="flex items-center justify-center gap-4 pt-4 text-3xl font-bold">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="40"

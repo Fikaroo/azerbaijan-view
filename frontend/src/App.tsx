@@ -4,7 +4,7 @@ import City from "./pages/City";
 
 const App = () => {
   return (
-    <div className="flex justify-center items-center container min-h-screen w-full text-gray-900 font-poppins">
+    <div className="container flex justify-center w-full min-h-screen text-gray-900 font-poppins">
       <Routes>
         <Route path="/" index element={<Home />} />
         <Route path="city/:cityName" index element={<City />} />
