@@ -29,6 +29,9 @@ export class City {
 
 @ObjectType()
 export class Village {
+  @Field(() => String)
+  id: string;
+
   @Field(() => Int)
   RayonId: number;
 
