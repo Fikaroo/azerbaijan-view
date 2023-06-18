@@ -32,7 +32,8 @@ model Seher {
 
 model Rayon {
   RayonKod                        Kodlar @relation(fields: [RayonId], references: [RayonKod])
-  RayonId                         Int    @id
+  RayonId                         Int
+  Id                              String @id @default(uuid())
   RayonAdi                        String
   Ehali                           Int
   Erazi                           String @default("km²")

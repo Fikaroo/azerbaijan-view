@@ -14,6 +14,7 @@ type City {
 }
 
 type Village {
+  id: String!
   RayonId: Int!
   RayonAdi: String!
   Ehali: Int!
