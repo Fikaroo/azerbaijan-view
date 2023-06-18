@@ -1,8 +1,8 @@
 import { request } from "graphql-request";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
-import { Kodlar, Rayon, Seher } from "../../types/types";
-import { ArrowLeftCircleIcon } from "@heroicons/react/24/solid";
+import { Kodlar } from "../../types/types";
+import { ArrowLeftCircleIcon, FaceFrownIcon } from "@heroicons/react/24/solid";
 
 const fetcher = (
   query: string,
@@ -54,6 +54,24 @@ const City = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
+  if (data?.city && data?.city?.length <= 0) {
+    return (
+      <div className="flex items-center gap-4">
+        <FaceFrownIcon className="text-indigo-400 w-72" />
+
+        <div className="space-y-4">
+          <h2 className="text-4xl font-semibold">Səhifə Tapılmadı</h2>
+          <div>
+            <p>Bu şəhər haqqında məlumat tapılmadı</p>
+            <p>Zəhmət olmazsa yenidən yoxlayın</p>
+          </div>
+          <Link to="/" className="btn">
+            Geri Dön
+          </Link>
+        </div>
+      </div>
+    );
+  }
   const citydata = data?.city?.[0] as Kodlar;
   const city = citydata?.Seher; // Seher datasi
   const village = citydata?.Rayon; // Rayon datasi
@@ -125,6 +143,7 @@ const City = () => {
             </div>
           </div>
         </div>
+
         <div className="flex flex-col justify-center gap-4 py-6">
           <h1 className="text-3xl font-semibold">{city.SeherAdi}</h1>
           <div className="overflow-x-auto">
@@ -157,7 +176,8 @@ const City = () => {
           {city.SeherAdi} Rayonları : {city.RayonSayi}
         </h2>
         {/* Rayonlar haqqinda melumatlar */}
-        <div className="grid h-full grid-cols-3 py-4">
+
+        <div className="grid h-full grid-cols-3 gap-4 py-4">
           {villageDetails.map((detail) => (
             <div className="h-full rounded-b">
               <div className="flex items-center justify-center w-full h-12 rounded-t bg-gradient-to-r from-sky-600 to-blue-600">
@@ -170,8 +190,10 @@ const City = () => {
                 {Object.entries(detail).map(([key, value], index) => (
                   <>
                     {index !== 0 ? (
-                      <div className="flex flex-wrap items-center gap-4">
-                        <span className="block w-1/2 btn btn-ghost">{key}</span>{" "}
+                      <div className="flex flex-wrap items-center gap-4 ">
+                        <span className="flex items-center w-1/2 btn btn-ghost">
+                          {key}
+                        </span>{" "}
                         <span className="block">{value}</span>
                       </div>
                     ) : (
